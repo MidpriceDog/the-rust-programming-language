@@ -1,3 +1,3 @@
 fn main() {
-    println!("Hello, world! - Ferris, the crab");
+    println!("Hello, world! From a project!");
 }
