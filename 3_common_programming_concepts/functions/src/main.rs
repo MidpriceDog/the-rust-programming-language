@@ -6,6 +6,8 @@ fn main() {
     statement_example();
     let ans = function_with_return();
     println!("The function function_with_return() evaluates to {ans}");
+    let s = subtract_two(ans);
+    println!("Subtract two function: {ans} - 2 is {s}");
 }
 
 // You must declare the type of each parameter in function signatures.
@@ -42,4 +44,8 @@ fn expression_example() {
 fn function_with_return() -> i32 {
     // No semicolon because we want an expression returning 5, NOT a statement.
     5 
+}
+
+fn subtract_two(x : i32) -> i32 {
+    return x-2;
 }
