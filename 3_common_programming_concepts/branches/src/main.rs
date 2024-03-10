@@ -2,13 +2,22 @@ use std::io;
 use std::time::Instant;
 
 fn main() {
+    age_conditional();
+    conditional();
+    labeled_loops();
+    else_if_branches(20);
+    returning_val_from_loop(2);
+    labeled_loops();
+    while_loop();
     looping_array_with_while();
     looping_array_with_for();
 }
 
 fn age_conditional() {
     let mut age = String::new();
-    io::stdin().read_line(&mut age).expect("Failed to read age.");
+    io::stdin()
+        .read_line(&mut age)
+        .expect("Failed to read age.");
     let age = match age.trim().parse() {
         Ok(num) => num,
         Err(_) => 0,
@@ -21,30 +30,28 @@ fn age_conditional() {
     }
 }
 
-
 // Rust does not convert non-boolean values to booleans automatically like some other languages.
 fn conditional() -> bool {
     // if 1 { // This will not compile.
-    if true { // This will compile.
+    if true {
+        // This will compile.
         return true;
     } else {
         return false;
     }
 }
 
-fn else_if_branches(x : i32) {
+fn else_if_branches(x: i32) {
     if x < 18 {
         println!("Can't vote!");
-    }
-    else if x > 18 && x < 21 {
+    } else if x > 18 && x < 21 {
         println!("Can vote but not drink!");
-    }
-    else {
+    } else {
         println!("Voting and drinking age!");
     }
 }
 
-fn returning_val_from_loop(x : i32) {
+fn returning_val_from_loop(x: i32) {
     let mut counter = 0;
     let result = loop {
         counter += 1;
@@ -59,11 +66,11 @@ fn labeled_loops() {
     let mut outer_counter = 0;
     let mut inner_counter = 10;
     // We can name loops using the syntax 'name
-    'outer_loop_label : loop {
+    'outer_loop_label: loop {
         println!("The outer loop is at {outer_counter}");
-        // Increment outer counter 
+        // Increment outer counter
         outer_counter += 1;
-        'inner_loop : loop {
+        'inner_loop: loop {
             if inner_counter == 1 {
                 break 'outer_loop_label;
             }
@@ -84,11 +91,10 @@ fn while_loop() {
 }
 
 fn looping_array_with_while() {
-   
     let start = Instant::now();
 
     let mut index = 0;
-    let array = [3; 1000*1000];
+    let array = [3; 1000];
     let mut result = 0;
     while index < array.len() {
         result += array[index];
@@ -104,8 +110,8 @@ fn looping_array_with_while() {
 fn looping_array_with_for() {
     let start = Instant::now();
     let mut index = 0;
-  
-    let array = [3; 1000*1000];
+
+    let array = [3; 1000];
     let mut result = 0;
     for element in array {
         result += element;
