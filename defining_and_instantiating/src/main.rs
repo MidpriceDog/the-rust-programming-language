@@ -35,6 +35,22 @@ fn build_user_shorthand(first_name: String, last_name: String, email: String) ->
 struct Color(u32, u32, u32);
 struct Point(i32, i32, i32);
 
+// Unit like struct has no data fields. Useful for implementing traits on a data
+// type. See Ch. 10.
+struct AlwaysEqual;
+
+// Make Debug functionality available for our struct by adding the following
+// outer attribute.
+#[derive(Debug)]
+struct Rectangle {
+    width: u64,
+    height: u64,
+}
+
+fn rect_area(rect: &Rectangle) -> u64 {
+    rect.width * rect.height
+}
+
 fn main() {
     // Create an instance of the User struct.
     let mut first_user = User {
@@ -69,4 +85,19 @@ fn main() {
     // we can acccess fields by name in structs.
     println!("x component of unit vector i: {}", unit_vec_i.0);
     println!("y component of unit vector j: {}", unit_vec_j.1);
+
+    let rect = Rectangle {
+        width: 102,
+        height: 50,
+    };
+    println!("The rectangle has area {}", rect_area(&rect));
+
+    // What if we wanted to print out information on our rectangle without
+    // destructuring the data? We cannot use println!("{}", rect) because
+    // structs do not implement the Display trait because it is ambiguous what
+    // is meant to display the struct. Rather, we can use the Debug trait which
+    // provides developers a way to see values while debugging code.
+    println!("The rect is {:?}", rect);
+    // If we want to pretty print the rect, we can do:
+    println!("The pretty print rect is {:#?}", rect);
 }
